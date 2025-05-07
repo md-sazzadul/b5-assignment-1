@@ -42,3 +42,18 @@ class Car extends Vehicle {
 function processValue(value: string | number): number {
   return typeof value === "string" ? value.length : value * 2;
 }
+
+interface Product {
+  name: string;
+  price: number;
+}
+
+function getMostExpensiveProduct(products: Product[]): Product | null {
+  if (products.length === 0) {
+    return null;
+  } else {
+    return products.reduce((max, current) =>
+      current.price > max.price ? current : max
+    );
+  }
+}
