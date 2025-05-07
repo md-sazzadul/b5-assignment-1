@@ -71,3 +71,15 @@ enum Day {
 function getDayType(day: Day): string {
   return day === 5 || day === 6 ? "Weekend" : "Weekday";
 }
+
+async function squareAsync(n: number): Promise<number> {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (n >= 0) {
+        resolve(n * n);
+      } else {
+        reject(new Error("Negative number not allowed"));
+      }
+    }, 1000);
+  });
+}
