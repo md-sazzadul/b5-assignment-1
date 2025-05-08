@@ -66,3 +66,29 @@ type Animal = {
 };
 type Dog = Animal & { species: string };
 ```
+
+- ### Implementation in Classes
+
+**Interfaces** can be implemented by a class whether only object-like **Types** can be implemented. Unions and primitives **Types** can not be implemented by a class. For example:
+
+```ts
+interface Animal {
+  name: string;
+  bark(): void;
+}
+
+class Dog implements Animal {
+  name = "Buddy";
+  bark() {
+    console.log("Ghew!");
+  }
+}
+```
+
+```ts
+type Runnable = { run(): void };
+class Robot implements Runnable {} // ✅ It will work
+
+type ID = string | number;
+class MyID implements ID {} // ❌ It will throw an Error
+```
