@@ -94,3 +94,34 @@ class MyID implements ID {} // ❌ It will throw an Error
 ```
 
 In practice, the choice between using **Interfaces** and **Types** depends on the specific needs of the TypeScript codebase. We can use **Interfaces** for defining object shapes, especially for public APIs or class implementation. On the other hand, we can use **Types** for unions, tuples or complex type definitions and manipulations.
+
+# The use of the `keyof` keyword in TypeScript
+
+The `keyof` keyword in TypeScript is used to create a union type of property names or keys from an object type. It helps to ensure type safety while working with object properties dynamically. Below is a simple example of using `keyof` keyword:
+
+```ts
+type Student = {
+  id: number;
+  name: string;
+  roll: number;
+};
+
+type StudentKeys = keyof Student; // "id" | "name" | "roll"
+
+let key: StudentKeys = "name"; // ✅ It will work perfectly
+let invalidKey: StudentKeys = "email"; // ❌ Error: Type '"email"' is not assignable to type '"id" | "name" | "roll"'.
+```
+
+We can also use generic function for safe property access:
+
+```ts
+function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
+  return obj[key];
+}
+
+const student = { id: 1, name: "Sazzad", roll: 69 };
+
+const studentName = getProperty(student, "name"); // ✅ Returns "Sazzad"
+const studentRoll = getProperty(student, "roll"); // ✅ Returns 69
+// getProperty(student, "email"); // ❌ Error: Argument of type '"email"' is not assignable to parameter of type '"id" | "name" | "roll"'.
+```
