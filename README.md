@@ -46,3 +46,23 @@ const user: User = { name: "Alice", age: 25 }; // ✅ It will work perfectly
 type User = { name: string };
 type User = { age: number }; // ❌ Error: Duplicate identifier 'User'
 ```
+
+- ### Extending/Combining
+
+**Interfaces** can extend other interfaces to inherit their members by using the keyword **'extends'**. We can not extend like this in **Types**, but we can combine them by using intersection **'&'**. For example:
+
+```ts
+interface Animal {
+  name: string;
+}
+interface Dog extends Animal {
+  species: string;
+}
+```
+
+```ts
+type Animal = {
+  name: string;
+};
+type Dog = Animal & { species: string };
+```
