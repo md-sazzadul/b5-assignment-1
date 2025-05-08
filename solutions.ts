@@ -74,12 +74,12 @@ function getDayType(day: Day): string {
 
 async function squareAsync(n: number): Promise<number> {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (n >= 0) {
+    if (n < 0) {
+      reject(new Error("Negative number not allowed"));
+    } else {
+      setTimeout(() => {
         resolve(n * n);
-      } else {
-        reject(new Error("Negative number not allowed"));
-      }
-    }, 1000);
+      }, 1000);
+    }
   });
 }
