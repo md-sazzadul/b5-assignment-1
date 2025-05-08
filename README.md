@@ -22,3 +22,27 @@ interface Person {
 ```ts
 type ID = string | number;
 ```
+
+## Key Differences:
+
+- ### Declaration Syntax and Merging
+
+We can declare **Interfaces** by the keyword **'interface'** and **Types** by the keyword **'type'**. **Interfaces** support merging with the same name, that means we can declare **Interfaces** with the same name multiple times. **Types** can not be merged, so we can't declare **Types** with the same name multiple times. For example:
+
+```ts
+interface User {
+  name: string;
+}
+
+interface User {
+  age: number;
+}
+
+// Merged interface
+const user: User = { name: "Alice", age: 25 }; // ✅ It will work perfectly
+```
+
+```ts
+type User = { name: string };
+type User = { age: number }; // ❌ Error: Duplicate identifier 'User'
+```
