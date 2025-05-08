@@ -92,3 +92,5 @@ class Robot implements Runnable {} // ✅ It will work
 type ID = string | number;
 class MyID implements ID {} // ❌ It will throw an Error
 ```
+
+In practice, the choice between using **Interfaces** and **Types** depends on the specific needs of the TypeScript codebase. We can use **Interfaces** for defining object shapes, especially for public APIs or class implementation. On the other hand, we can use **Types** for unions, tuples or complex type definitions and manipulations.
